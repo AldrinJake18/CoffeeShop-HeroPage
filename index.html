@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mellow Cafe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            FRESH COFFEE<span>.</span>
+        </div>
+
+        <nav>
+            <a href="#" class="active">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="#">MENU</a>
+            <a href="#">CONTACT</a>
+        </nav>
+
+        <div class="menu-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </header>
+
+
+    <main class="hero">
+
+        <img src="Image/Design.png" class="design-layer" alt="">
+
+        <div class="circle circle-one"></div>
+        <div class="circle circle-two"></div>
+
+        <div class="blob blob-one"></div>
+        <div class="blob blob-two"></div>
+
+
+        <!-- LEFT SIDE -->
+
+        <section class="hero-content">
+
+            <p class="small-title">
+                WELCOME TO
+            </p>
+
+            <h1>
+                Mellow
+                <span>Cafe</span>
+            </h1>
+
+            <p class="description">
+                A warm place for freshly brewed coffee,
+                good conversations, and unforgettable moments.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#" class="primary-button">
+                    EXPLORE MENU
+                </a>
+
+                <a href="#" class="secondary-button">
+                    SEE ORDERS
+                </a>
+
+            </div>
+
+        </section>
+
+        <section class="hero-visual">
+
+            <button
+                class="circle-arrow back-arrow"
+                id="backButton"
+                aria-label="Previous drink">
+                &lt;
+            </button>
+
+            <div class="large-circle" id="largeCircle">
+
+                <div class="coffee-placeholder" id="coffeePlaceholder">
+                    COFFEE
+                </div>
+
+            </div>
+
+            <button
+                class="circle-arrow next-arrow"
+                id="nextButton"
+                aria-label="Next drink">
+                &gt;
+            </button>
+
+            <div class="coffee-card">
+
+                <div class="card-circle"></div>
+
+                <div>
+                    <p>Today's Pick</p>
+                    <h3>Hot Coffee</h3>
+                </div>
+
+            </div>
+
+
+            <div class="floating-dot dot-one"></div>
+            <div class="floating-dot dot-two"></div>
+
+        </section>
+
+        <div class="bottom-info">
+
+            <div>
+                <strong>01</strong>
+                <span>Freshly Brewed</span>
+            </div>
+
+            <div>
+                <strong>02</strong>
+                <span>Premium Beans</span>
+            </div>
+
+            <div>
+                <strong>03</strong>
+                <span>Made With Love</span>
+            </div>
+
+        </div>
+
+
+        <div class="bottom-shape"></div>
+
+    </main>
+
+
+    <script>
+
+        const coffeeData = [
+
+            {
+                name: "COFFEE",
+                main: "#C08552",
+                dark: "#8C5A3C"
+            },
+
+            {
+                name: "MATCHA",
+                main: "#91A66F",
+                dark: "#63754A"
+            },
+
+            {
+                name: "MOCHA",
+                main: "#9B6749",
+                dark: "#6F4532"
+            },
+
+            {
+                name: "ESPRESSO",
+                main: "#6F4532",
+                dark: "#492D24"
+            },
+
+            {
+                name: "AMERICANO",
+                main: "#7D8A83",
+                dark: "#515D57"
+            }
+
+        ];
+
+
+        let currentCoffee = 0;
+
+
+        const largeCircle =
+            document.getElementById("largeCircle");
+
+        const coffeePlaceholder =
+            document.getElementById("coffeePlaceholder");
+
+        const backButton =
+            document.getElementById("backButton");
+
+        const nextButton =
+            document.getElementById("nextButton");
+
+
+        function changeCoffee(index) {
+
+            const coffee = coffeeData[index];
+
+            largeCircle.style.background =
+                coffee.main;
+
+            largeCircle.style.boxShadow =
+                "20px 20px 0 " + coffee.dark;
+
+            coffeePlaceholder.style.borderColor =
+                coffee.dark;
+
+            coffeePlaceholder.style.color =
+                coffee.dark;
+
+            coffeePlaceholder.textContent =
+                coffee.name;
+
+            largeCircle.classList.remove("coffee-change");
+
+            void largeCircle.offsetWidth;
+
+            largeCircle.classList.add("coffee-change");
+
+        }
+
+        nextButton.addEventListener("click", function () {
+
+            currentCoffee++;
+
+            if (currentCoffee >= coffeeData.length) {
+
+                currentCoffee = 0;
+
+            }
+
+            changeCoffee(currentCoffee);
+
+        });
+
+
+        backButton.addEventListener("click", function () {
+
+            currentCoffee--;
+
+            if (currentCoffee < 0) {
+
+                currentCoffee = coffeeData.length - 1;
+
+            }
+
+            changeCoffee(currentCoffee);
+
+        });
+
+        changeCoffee(0);
+
+    </script>
+
+</body>
+</html>
